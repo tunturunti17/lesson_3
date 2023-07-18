@@ -1,10 +1,12 @@
 <template>
-    <li class="list-group-item" :value="value"
+    <li class="list-group-item" :item="item"
     style="cursor:pointer">
-        <p style="display: inline-block; margin-left: 5px;" :value="value">{{ value.text }}</p>
-        <todo-btns :value="value"
-        @changeitem="$emit('changeitem', value)"
-        @remove="$emit('remove', value)"
+        <p 
+        style="display: inline-block; margin-left: 5px;" :item="item"
+        contenteditable="true">{{ item.text }}</p>
+        <todo-btns :item="item"
+        @changeitem="$emit('changeitem', item)"
+        @remove="$emit('remove', item)"
         ></todo-btns>
         <formChange></formChange>
     </li>
@@ -24,7 +26,7 @@ import formChange from '@/components/formChange.vue'
             todoitems: {
                 type: Array,
             },
-            value: {
+            item: {
                 type: Object,
             },
         },

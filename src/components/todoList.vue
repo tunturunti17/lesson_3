@@ -1,12 +1,12 @@
 <template>
     <h1 v-if="todoitems.length==0">Please add new task!</h1>
     <ul v-else class="list-group">
-        <todo-item v-for="value of filterTask"
-        :key="value.id"
-        :value="value"
-        @changeitem="$emit('changeitem', value)"
-        @remove="$emit('remove', value)"
-        @changetext="$emit('changetext', value)"></todo-item>
+        <todo-item v-for="item of filterTask"
+        :key="item.id"
+        :item="item"
+        @changeitem="$emit('changeitem', item)"
+        @remove="$emit('remove', item)"
+        @changetext="$emit('changetext', item)"></todo-item>
     </ul>
 </template>
 
@@ -21,7 +21,7 @@ import todoItem from '@/components/todoItem.vue'
             todoitems: {
                 type: Array,
             },
-            value: {
+            item: {
                 type: Object,
             },
             filterselect: {

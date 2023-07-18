@@ -1,6 +1,7 @@
 <template>
     <todo-stat :todoitems="todoItems"></todo-stat>
-    <form-add @create="addNewTodo"></form-add>
+    <form-add @create="addNewTodo"
+    ></form-add>
     <vue-input type="text" 
     class="form-control" 
     placeholder="Search task"
@@ -49,15 +50,15 @@ export default ({
         this.todoItems = JSON.parse(localStorage.getItem(STORAGE_KEY) || [])
     },
     methods: {
-        changeState(value) {
-            return value.done = !value.done;
+        changeState(item) {
+            return item.done = !item.done;
         },
         addNewTodo(item) {
             this.todoItems.push(item);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todoItems));
         },
-        removeItem(value) {
-            this.todoItems = this.todoItems.filter(item => item.id !== value.id);
+        removeItem(item) {
+            this.todoItems = this.todoItems.filter(i => i.id !== item.id);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todoItems));
         },
     },

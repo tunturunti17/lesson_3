@@ -1,18 +1,18 @@
 <template>
     <div class="todo-btns">
         <vue-btn type="button" 
-        :class="value.done ? 'btn btn-success' : 'btn btn-secondary'"
-        @click="$emit('changeitem', value)">
-        {{ value.done ? 'completed' : 'in order' }}
+        :class="item.done ? 'btn btn-success' : 'btn btn-secondary'"
+        @click="$emit('changeitem', item)">
+        {{ item.done ? 'completed' : 'in order' }}
         </vue-btn>
         <vue-btn type="button"
         class="btn btn-info"
-        :value="value"
-        @click="$emit('changetext', value)">Edit</vue-btn>
+        :item="item"
+        @click="$emit('changetext', item)">Edit</vue-btn>
         <vue-btn type="button"
         class="btn btn-danger"
-        :value="value"
-        @click="$emit('remove', value)">Delete</vue-btn>
+        :item="item"
+        @click="$emit('remove', item)">Delete</vue-btn>
     </div>
 </template>
 
@@ -24,7 +24,7 @@ import vueBtn from '@/components/UI/myButton.vue'
             vueBtn
         },
         props: {
-            value: {
+            item: {
                 type: Object,
             },
         },
