@@ -2,11 +2,11 @@
     <todo-stat :todoitems="todoItems"></todo-stat>
     <form-add @create="addNewTodo"
     ></form-add>
-    <vue-input type="text" 
+    <vue-input type="text"
     class="form-control" 
     placeholder="Search task"
     v-model="searchQuery"></vue-input>
-    <vue-select v-model="filterSelect"></vue-select>
+    <vue-select v-mousemove v-model="filterSelect"></vue-select>
     <todo-list :todoitems="todoItems" @changeitem="changeState"
     :filterselect="filterSelect"
     :searchquery="searchQuery"
@@ -22,10 +22,16 @@ import todoList from '@/components/todoList.vue'
 import formAdd from '@/components/formAdd.vue'
 import vueInput from '@/components/UI/myInput.vue'
 import vueSelect from '@/components/UI/mySelected.vue'
+import lifecycle  from '@/components/mixins/lifeCycle.js'
 const STORAGE_KEY = 'todo_storage'
 
 export default ({
     name: 'todo-section',
+    setup(instance) {
+        lifecycle(instance)
+
+        return {};
+    },
     components: {
         todoStat,
         todoList,
@@ -35,13 +41,7 @@ export default ({
     },
     data: function() {
         return {
-            todoItems: [
-                // {id: 1, text: 'task 1', done: false},
-                // {id: 2, text: 'task 2', done: false},
-                // {id: 3, text: 'task 3', done: true},
-                // {id: 4, text: 'task 4', done: false},
-                // {id: 5, text: 'task 5', done: false},
-            ],
+            todoItems: [],
             filterSelect: "all",
             searchQuery: "",
         }
